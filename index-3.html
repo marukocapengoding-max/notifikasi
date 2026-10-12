@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Notifikasi Cute 🌸</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>🌸 Pusat Notifikasi 🌸</h1>
+      <p>Kirim lewat Email, WhatsApp, atau SMS ✨</p>
+    </header>
+
+    <form id="form-notif" class="card">
+      <label for="pesan">💌 Pesan</label>
+      <textarea id="pesan" placeholder="Tulis pesanmu di sini..."></textarea>
+
+      <div class="saluran">
+        <label class="judul"><input type="checkbox" name="saluran" value="email" checked /> 📧 Email</label>
+        <input type="text" id="tujuan-email" placeholder="nama@email.com" />
+      </div>
+
+      <div class="saluran">
+        <label class="judul"><input type="checkbox" name="saluran" value="whatsapp" /> 💬 WhatsApp</label>
+        <input type="text" id="tujuan-whatsapp" placeholder="628123456789" />
+      </div>
+
+      <div class="saluran">
+        <label class="judul"><input type="checkbox" name="saluran" value="sms" /> 📱 SMS</label>
+        <input type="text" id="tujuan-sms" placeholder="628123456789" />
+      </div>
+
+      <button type="submit">Kirim Notifikasi 💖</button>
+    </form>
+
+    <section class="card">
+      <h2>🎀 Riwayat Pengiriman</h2>
+      <ul id="log"></ul>
+    </section>
+
+    <footer>Dibuat dengan 💗 | Demo OOP: kelas abstrak &amp; polimorfisme</footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
