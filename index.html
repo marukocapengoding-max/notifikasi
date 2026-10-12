@@ -1,48 +1,192 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Notifikasi Cute 🌸</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Notifikasi Cute 🌸</title>
+<style>
+:root {
+  --pink-50: #fff5f8;
+  --pink-100: #ffe4ec;
+  --pink-200: #ffd0df;
+  --pink-300: #ffb6cd;
+  --pink-400: #ff94b4;
+  --pink-text: #8a4a62;
+  --white: #ffffff;
+  --shadow: 0 10px 30px rgba(255, 148, 180, 0.25);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Comic Sans MS", "Quicksand", "Nunito", system-ui, sans-serif;
+  color: var(--pink-text);
+  background:
+    radial-gradient(circle at 15% 20%, var(--pink-200) 0 8px, transparent 9px),
+    radial-gradient(circle at 80% 30%, var(--pink-200) 0 6px, transparent 7px),
+    radial-gradient(circle at 60% 80%, var(--pink-200) 0 10px, transparent 11px),
+    linear-gradient(160deg, var(--pink-50), var(--pink-100));
+  display: flex;
+  justify-content: center;
+  padding: 32px 16px;
+}
+.container { width: 100%; max-width: 560px; }
+header { text-align: center; margin-bottom: 20px; }
+header h1 { margin: 0; font-size: 1.9rem; color: var(--pink-400); }
+header p { margin: 6px 0 0; }
+.card {
+  background: var(--white);
+  border: 3px dashed var(--pink-200);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+label { display: block; font-weight: bold; margin: 14px 0 6px; }
+textarea, input[type="text"] {
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid var(--pink-200);
+  border-radius: 16px;
+  background: var(--pink-50);
+  color: var(--pink-text);
+  font: inherit;
+  outline: none;
+}
+textarea { resize: vertical; min-height: 90px; }
+textarea:focus, input[type="text"]:focus {
+  border-color: var(--pink-400);
+  box-shadow: 0 0 0 4px rgba(255, 148, 180, 0.2);
+}
+.saluran { background: var(--pink-50); border-radius: 18px; padding: 12px 14px; margin-top: 12px; }
+.saluran .judul { display: flex; align-items: center; gap: 8px; font-weight: bold; cursor: pointer; margin: 0 0 8px; }
+.saluran input[type="checkbox"] { accent-color: var(--pink-400); width: 18px; height: 18px; }
+button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--pink-300), var(--pink-400));
+  color: var(--white);
+  font: inherit;
+  font-weight: bold;
+  font-size: 1.05rem;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(255, 148, 180, 0.4);
+}
+button:active { transform: scale(0.99); }
+h2 { margin: 0 0 12px; font-size: 1.2rem; color: var(--pink-400); }
+#log { list-style: none; margin: 0; padding: 0; }
+#log li { background: var(--pink-100); border-radius: 14px; padding: 10px 14px; margin-bottom: 8px; word-break: break-word; }
+#log li.error { background: #ffd9d9; color: #a13a4a; }
+footer { text-align: center; font-size: 0.85rem; opacity: 0.8; }
+</style>
 </head>
 <body>
-  <main class="container">
-    <header>
-      <h1>🌸 Pusat Notifikasi 🌸</h1>
-      <p>Kirim lewat Email, WhatsApp, atau SMS ✨</p>
-    </header>
+<main class="container">
+  <header>
+    <h1>🌸 Pusat Notifikasi 🌸</h1>
+    <p>Kirim lewat Email, WhatsApp, atau SMS ✨</p>
+  </header>
 
-    <form id="form-notif" class="card">
-      <label for="pesan">💌 Pesan</label>
-      <textarea id="pesan" placeholder="Tulis pesanmu di sini..."></textarea>
+  <form id="form-notif" class="card">
+    <label for="pesan">💌 Pesan</label>
+    <textarea id="pesan" placeholder="Tulis pesanmu di sini..."></textarea>
 
-      <div class="saluran">
-        <label class="judul"><input type="checkbox" name="saluran" value="email" checked /> 📧 Email</label>
-        <input type="text" id="tujuan-email" placeholder="nama@email.com" />
-      </div>
+    <div class="saluran">
+      <label class="judul"><input type="checkbox" name="saluran" value="email" checked /> 📧 Email</label>
+      <input type="text" id="tujuan-email" placeholder="nama@email.com" />
+    </div>
+    <div class="saluran">
+      <label class="judul"><input type="checkbox" name="saluran" value="whatsapp" /> 💬 WhatsApp</label>
+      <input type="text" id="tujuan-whatsapp" placeholder="628123456789" />
+    </div>
+    <div class="saluran">
+      <label class="judul"><input type="checkbox" name="saluran" value="sms" /> 📱 SMS</label>
+      <input type="text" id="tujuan-sms" placeholder="628123456789" />
+    </div>
 
-      <div class="saluran">
-        <label class="judul"><input type="checkbox" name="saluran" value="whatsapp" /> 💬 WhatsApp</label>
-        <input type="text" id="tujuan-whatsapp" placeholder="628123456789" />
-      </div>
+    <button type="submit">Kirim Notifikasi 💖</button>
+  </form>
 
-      <div class="saluran">
-        <label class="judul"><input type="checkbox" name="saluran" value="sms" /> 📱 SMS</label>
-        <input type="text" id="tujuan-sms" placeholder="628123456789" />
-      </div>
+  <section class="card">
+    <h2>🎀 Riwayat Pengiriman</h2>
+    <ul id="log"></ul>
+  </section>
 
-      <button type="submit">Kirim Notifikasi 💖</button>
-    </form>
+  <footer>Dibuat dengan 💗 | Demo OOP: kelas abstrak &amp; polimorfisme</footer>
+</main>
 
-    <section class="card">
-      <h2>🎀 Riwayat Pengiriman</h2>
-      <ul id="log"></ul>
-    </section>
+<script>
+// Semua saluran mewarisi Notifikasi dan wajib punya kirim()
+class Notifikasi {
+  constructor(penerima, pesan) {
+    if (new.target === Notifikasi) {
+      throw new Error("Notifikasi adalah kelas abstrak.");
+    }
+    this.penerima = penerima;
+    this.pesan = pesan;
+  }
+  kirim() {
+    throw new Error("Method kirim() harus diimplementasikan oleh subclass.");
+  }
+}
 
-    <footer>Dibuat dengan 💗 | Demo OOP: kelas abstrak &amp; polimorfisme</footer>
-  </main>
+class EmailNotifikasi extends Notifikasi {
+  kirim() {
+    if (!this.penerima.includes("@")) throw new Error("Alamat email tidak valid.");
+    return `📧 Email terkirim ke ${this.penerima}: "${this.pesan}"`;
+  }
+}
 
-  <script src="script.js"></script>
+class WhatsAppNotifikasi extends Notifikasi {
+  kirim() {
+    if (!/^\+?\d{9,15}$/.test(this.penerima)) throw new Error("Nomor WhatsApp tidak valid.");
+    return `💬 WhatsApp terkirim ke ${this.penerima}: "${this.pesan}"`;
+  }
+}
+
+class SMSNotifikasi extends Notifikasi {
+  kirim() {
+    if (!/^\+?\d{9,15}$/.test(this.penerima)) throw new Error("Nomor SMS tidak valid.");
+    const ringkas = this.pesan.length > 160 ? this.pesan.slice(0, 157) + "..." : this.pesan;
+    return `📱 SMS terkirim ke ${this.penerima}: "${ringkas}"`;
+  }
+}
+
+const saluran = { email: EmailNotifikasi, whatsapp: WhatsAppNotifikasi, sms: SMSNotifikasi };
+const form = document.getElementById("form-notif");
+const log = document.getElementById("log");
+
+function tambahLog(teks, error = false) {
+  const li = document.createElement("li");
+  li.textContent = teks;
+  if (error) li.classList.add("error");
+  log.prepend(li);
+}
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const pesan = document.getElementById("pesan").value.trim();
+  const dipilih = [...form.querySelectorAll("input[name=saluran]:checked")];
+
+  if (!pesan || dipilih.length === 0) {
+    tambahLog("⚠️ Isi pesan dan pilih minimal satu saluran ya.", true);
+    return;
+  }
+
+  dipilih.forEach((cb) => {
+    const jenis = cb.value;
+    const tujuan = document.getElementById("tujuan-" + jenis).value.trim();
+    try {
+      const notif = new saluran[jenis](tujuan, pesan);
+      tambahLog(notif.kirim());
+    } catch (err) {
+      tambahLog("❌ " + jenis.toUpperCase() + ": " + err.message, true);
+    }
+  });
+});
+</script>
 </body>
 </html>
